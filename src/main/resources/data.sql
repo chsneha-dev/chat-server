@@ -1,0 +1,1 @@
+INSERT INTO CHAT_ROOM VALUES (123, 'Weekend Plan', 'Admin', '2024-03-17 10:10:20');
