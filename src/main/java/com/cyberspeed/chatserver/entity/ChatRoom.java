@@ -1,14 +1,12 @@
 package com.cyberspeed.chatserver.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -31,4 +29,8 @@ public class ChatRoom {
 
     @Column(name = "CREATED_ON", updatable = false)
     private LocalDateTime createdOn;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ROOM_ID", referencedColumnName = "ROOM_ID")
+    List<Message> messages;
 }

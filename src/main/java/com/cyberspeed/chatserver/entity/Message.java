@@ -1,10 +1,7 @@
 package com.cyberspeed.chatserver.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "CHAT_MESSAGES")
 public class Message {
@@ -25,7 +23,7 @@ public class Message {
     private String clientId;
 
     @Column(name = "ROOM_ID")
-    private Long roomId;
+    private Long fkRoomId;
 
     @Column(name = "DATA")
     private String data;

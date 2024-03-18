@@ -1,26 +1,28 @@
 package com.cyberspeed.chatserver.controller;
 
-import com.cyberspeed.chatserver.entity.Message;
+import com.cyberspeed.chatserver.dto.ChatHistory;
+import com.cyberspeed.chatserver.dto.MessageDto;
 import com.cyberspeed.chatserver.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class ChatController {
 
-
-    private ChatService chatService;
+    private final ChatService chatService;
 
     @GetMapping("/chat/{roomId}")
-    public ResponseEntity<List<Message>> test(@PathVariable Long roomId) {
+    public ResponseEntity<ChatHistory> chat(@PathVariable Long roomId) {
         return ResponseEntity.ok().body(chatService.chat(roomId));
     }
+
+    @PostMapping("/message")
+    public ResponseEntity<String> sendMesssage(@RequestBody @Validated MessageDto messageDto) {
+        return ResponseEntity.ok().body(chatService.sendMessage(messageDto));
+    }
+
 }

@@ -1,12 +1,14 @@
 package com.cyberspeed.chatserver.service;
 
+import com.cyberspeed.chatserver.dto.ChatHistory;
+import com.cyberspeed.chatserver.dto.MessageDto;
 import com.cyberspeed.chatserver.entity.Message;
 
 import java.util.List;
 
 public interface ChatService {
 
-    public String sendMessage();
+    String sendMessage(MessageDto messageDto);
 
-    List<Message> chat(Long roomId);
+    ChatHistory chat(Long roomId);
 }
