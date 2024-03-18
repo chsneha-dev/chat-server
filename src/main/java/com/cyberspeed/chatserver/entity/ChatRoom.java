@@ -33,4 +33,8 @@ public class ChatRoom {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ROOM_ID", referencedColumnName = "ROOM_ID")
     List<Message> messages;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ROOM_ID", referencedColumnName = "ROOM_ID")
+    List<User> participants;
 }

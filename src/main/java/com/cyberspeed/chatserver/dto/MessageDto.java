@@ -18,6 +18,7 @@ public class MessageDto {
     @JsonIgnore
     private Long id;
 
+    //can be validated this against the existing users
     @NotBlank
     private String clientId;
 

@@ -3,6 +3,7 @@ package com.cyberspeed.chatserver.service.impl;
 import com.cyberspeed.chatserver.dto.ChatHistory;
 import com.cyberspeed.chatserver.dto.MessageDto;
 import com.cyberspeed.chatserver.entity.Message;
+import com.cyberspeed.chatserver.exception.ChatException;
 import com.cyberspeed.chatserver.repo.ChatRoomRepo;
 import com.cyberspeed.chatserver.repo.MessageRepo;
 import com.cyberspeed.chatserver.service.ChatService;
@@ -43,6 +44,6 @@ public class ChatServiceImpl implements ChatService {
                 ChatHistory.builder()
                         .roomId(roomId)
                         .messages(room.getMessages() == null ? null : room.getMessages().stream().map(msg -> new MessageDto(msg.getId(), msg.getClientId(), msg.getFkRoomId(), msg.getData(), msg.getAttachmentId(), msg.getSentOn())).toList()).build()
-        ).orElseThrow(() -> new RuntimeException("Invalid Room !!"));
+        ).orElseThrow(() -> new ChatException("Invalid Room !!"));
     }
 }
