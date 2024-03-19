@@ -13,22 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MessageDto {
-
-    @JsonIgnore
-    private Long id;
-
-    //can be validated this against the existing users
-    @NotBlank
+public class MessageResp {
     private String clientId;
-
-    private Long roomId;
-
-    @NotEmpty
     private String data;
-
-    //if photo/video/doc is uploaded unique id of the document
-    private String attachmentId;
     private LocalDateTime sentOn;
-
 }
