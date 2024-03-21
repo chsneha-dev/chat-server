@@ -9,6 +9,7 @@ import com.cyberspeed.chatserver.repo.MessageRepo;
 import com.cyberspeed.chatserver.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.time.LocalDateTime;
 
@@ -45,5 +46,15 @@ public class ChatServiceImpl implements ChatService {
                         .roomId(roomId)
                         .messages(room.getMessages() == null ? null : room.getMessages().stream().map(msg -> new MessageDto(msg.getId(), msg.getClientId(), msg.getFkRoomId(), msg.getData(), msg.getAttachmentId(), msg.getSentOn())).toList()).build()
         ).orElseThrow(() -> new ChatException("Invalid Room !!"));
+    }
+
+    @Override
+    public Flux<Message> streamMsges() {
+        return Flux.fromIterable(messageRepo.findAll());
+    }
+
+    @Override
+    public void deleteMessage(Long messageId) {
+        messageRepo.deleteById(messageId);
     }
 }
