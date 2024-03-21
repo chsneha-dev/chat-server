@@ -1,6 +1,5 @@
 package com.cyberspeed.chatserver.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -15,7 +14,6 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageDto {
 
-    @JsonIgnore
     private Long id;
 
     //can be validated this against the existing users
